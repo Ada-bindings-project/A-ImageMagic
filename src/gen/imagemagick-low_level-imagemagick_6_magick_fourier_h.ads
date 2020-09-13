@@ -1,0 +1,65 @@
+pragma Ada_2012;
+pragma Style_Checks (Off);
+pragma Warnings ("U");
+
+with Interfaces.C; use Interfaces.C;
+with ImageMagick.Low_Level.ImageMagick_6_magick_magick_type_h;
+limited with ImageMagick.Low_Level.ImageMagick_6_magick_image_h;
+limited with ImageMagick.Low_Level.ImageMagick_6_magick_exception_h;
+
+
+package ImageMagick.Low_Level.ImageMagick_6_magick_fourier_h is
+
+  --  Copyright 1999-2020 ImageMagick Studio LLC, a non-profit organization
+  --  dedicated to making software imaging solutions freely available.
+  --  
+  --  You may not use this file except in compliance with the License.  You may
+  --  obtain a copy of the License at
+  --  
+  --    https://imagemagick.org/script/license.php
+  --  
+  --  Unless required by applicable law or agreed to in writing, software
+  --  distributed under the License is distributed on an "AS IS" BASIS,
+  --  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  --  See the License for the specific language governing permissions and
+  --  limitations under the License.
+  --  MagickCore discrete Fourier transform (DFT) methods.
+  -- 
+
+   type ComplexOperator is 
+     (UndefinedComplexOperator,
+      AddComplexOperator,
+      ConjugateComplexOperator,
+      DivideComplexOperator,
+      MagnitudePhaseComplexOperator,
+      MultiplyComplexOperator,
+      RealImaginaryComplexOperator,
+      SubtractComplexOperator)
+   with Convention => C;  -- /usr/include/ImageMagick-6/magick/fourier.h:35
+
+   function ComplexImages
+     (arg1 : access constant ImageMagick.Low_Level.ImageMagick_6_magick_image_h.u_Image;
+      arg2 : ComplexOperator;
+      arg3 : access ImageMagick.Low_Level.ImageMagick_6_magick_exception_h.ExceptionInfo) return access ImageMagick.Low_Level.ImageMagick_6_magick_image_h.u_Image  -- /usr/include/ImageMagick-6/magick/fourier.h:38
+   with Import => True, 
+        Convention => C, 
+        External_Name => "ComplexImages";
+
+   function ForwardFourierTransformImage
+     (arg1 : access constant ImageMagick.Low_Level.ImageMagick_6_magick_image_h.u_Image;
+      arg2 : ImageMagick.Low_Level.ImageMagick_6_magick_magick_type_h.MagickBooleanType;
+      arg3 : access ImageMagick.Low_Level.ImageMagick_6_magick_exception_h.ExceptionInfo) return access ImageMagick.Low_Level.ImageMagick_6_magick_image_h.u_Image  -- /usr/include/ImageMagick-6/magick/fourier.h:39
+   with Import => True, 
+        Convention => C, 
+        External_Name => "ForwardFourierTransformImage";
+
+   function InverseFourierTransformImage
+     (arg1 : access constant ImageMagick.Low_Level.ImageMagick_6_magick_image_h.u_Image;
+      arg2 : access constant ImageMagick.Low_Level.ImageMagick_6_magick_image_h.u_Image;
+      arg3 : ImageMagick.Low_Level.ImageMagick_6_magick_magick_type_h.MagickBooleanType;
+      arg4 : access ImageMagick.Low_Level.ImageMagick_6_magick_exception_h.ExceptionInfo) return access ImageMagick.Low_Level.ImageMagick_6_magick_image_h.u_Image  -- /usr/include/ImageMagick-6/magick/fourier.h:41
+   with Import => True, 
+        Convention => C, 
+        External_Name => "InverseFourierTransformImage";
+
+end ImageMagick.Low_Level.ImageMagick_6_magick_fourier_h;

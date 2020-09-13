@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+import glob
+from os.path import *
+import subprocess
+import sys
+
+sedfiles=glob.glob("sed/*.sed")
+sedfiles.sort()
+for sed in sedfiles:
+	print (sed)
+	name=splitext(basename(sed))[0]
+	if name=="all":
+		srcs=glob.glob("src/gen/*.ads")
+	else:
+		srcs=[join("src","gen", name + ".ads")]
+	result = subprocess.call(["sed", "-i" , "-f" , sed] + srcs)
+	if result != 0:
+		sys.exit(result)
